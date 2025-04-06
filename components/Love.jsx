@@ -89,7 +89,7 @@ export default function Love() {
   const yes = [
     {
       id: 1,
-      text: "I khow it! You love me a lot",
+      text: "I know it! You love me a lot",
       text2: "I love you too",
       img: "/images/yes.gif",
     },
@@ -127,7 +127,7 @@ const handlebg = () => {
           className="w-screen h-screen z-30 absolute top-0 left-0"
         />
         <h1 className="text-white absolute cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold z-40 text-center">
-          Click anywhere to start
+        Welcome Areesha let's click to start..
         </h1>
       </div>
       <audio id="backgroundMusic" loop>
