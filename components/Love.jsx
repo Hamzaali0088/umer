@@ -1,36 +1,27 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import FullContainer from "./FullContainer";
 import Container from "./Container";
 import Image from "next/image";
 export default function Love() {
   const [count, setCount] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [bg, setbg] = useState(false);
-  const audioRef = useRef(null);
 
   useEffect(() => {
-    const handleStart = () => {
-      if (audioRef.current) {
-        audioRef.current.play()
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch((error) => {
-            console.log("Audio playback failed:", error);
-          });
-      }
-    };
+    const audio = document.getElementById("backgroundMusic");
+    if (audio) {
+      const playAudio = () => {
+        audio.play();
+        setIsPlaying(true);
+        document.removeEventListener("click", playAudio);
+      };
 
-    const handleBgClick = () => {
-      setbg(true);
-      handleStart();
-    };
+      document.addEventListener("click", playAudio);
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
+      return () => {
+        document.removeEventListener("click", playAudio);
+        audio.pause();
+      };
+    }
   }, []);
 
   const data = [
@@ -117,15 +108,17 @@ export default function Love() {
       setvisiablecount(visiablecount + 1);
     }
   };
+  const [bg, setbg] = useState(false);
+
+const handlebg = () => {
+  setbg(true);
+}
 
   console.log("count is ", count);
   console.log("visiablecount is ", visiablecount);
   return (
     <FullContainer className="bg-[#DD969B] flex items-center justify-center">
-      <div 
-        onClick={() => setbg(true)} 
-        className={`${bg ? "hidden" : "opacity-100"} border-2 border-white absolute top-0 left-0 w-screen h-screen z-30`}
-      >
+      <div onClick={handlebg} className={`${bg ? "hidden" : "opacity-100"}  border-2 border-white absolute top-0 left-0 w-screen h-screen z-30`}>
         <Image
           src="/images/background.png"
           height={2000}
@@ -134,16 +127,13 @@ export default function Love() {
           className="w-screen h-screen z-30 absolute top-0 left-0"
         />
         <h1 className="text-white absolute cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold z-40 text-center">
-          Click anywhere to start ❤️
+          Click anywhere to start
         </h1>
       </div>
-
-      <audio 
-        ref={audioRef}
-        loop
-        preload="auto"
-        src="/music/love.mp3"
-      />
+      <audio id="backgroundMusic" loop>
+        <source src="/music/love.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
 
       <Container>
         {whichyes ? (
@@ -240,16 +230,15 @@ export default function Love() {
       </Container>
       <button
         onClick={() => {
-          if (audioRef.current) {
-            if (isPlaying) {
-              audioRef.current.pause();
-            } else {
-              audioRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
+          const audio = document.getElementById("backgroundMusic");
+          if (isPlaying) {
+            audio.pause();
+          } else {
+            audio.play();
           }
+          setIsPlaying(!isPlaying);
         }}
-        className="fixed bottom-4 right-4 bg-white p-2 rounded-full shadow-lg z-50"
+        className="fixed bottom-4 right-4 bg-white p-2 rounded-full shadow-lg"
       >
         {isPlaying ? "🔇 Mute" : "🔊 Play"}
       </button>
