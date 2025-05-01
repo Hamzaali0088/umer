@@ -27,7 +27,7 @@ export default function Love() {
   const data = [
     {
       id: 1,
-      text: "Do you love me? 🤗",
+      text: "Do you like me? 🤗",
       text2: "Chiku is all yours",
       img: "/images/1.gif",
     },
@@ -89,8 +89,8 @@ export default function Love() {
   const yes = [
     {
       id: 1,
-      text: "I know it! You love me a lot",
-      text2: "I love you too",
+      text: "I know it! You like me a lot",
+      text2: "I like you too",
       img: "/images/yes.gif",
     },
   ];
@@ -127,11 +127,11 @@ const handlebg = () => {
           className="w-screen h-screen z-30 absolute top-0 left-0"
         />
         <h1 className="text-white absolute cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold z-40 text-center">
-        Welcome Areesha let's click to start..
+        Welcome Reeha let's click to start..
         </h1>
       </div>
       <audio id="backgroundMusic" loop>
-        <source src="/music/love.mp3" type="audio/mp3" />
+        <source src="/music/Like.mp3" type="audio/mp3" />
         Your browser does not support the audio element.
       </audio>
 
@@ -143,7 +143,7 @@ const handlebg = () => {
                 src={data[count].img}
                 height={100}
                 width={100}
-                alt="Love animation"
+                alt="Like animation"
                 className="w-full max-w-[150px] mx-auto"
               />
               <h1 className="text-black text-3xl font-bold text-center">
@@ -218,7 +218,7 @@ const handlebg = () => {
               height={100}
               width={100}
               src={yes[0].img}
-              alt="Love animation"
+              alt="Like animation"
               className="w-full max-w-[150px] mx-auto"
             />
             <h1 className="text-black text-3xl font-bold text-center">
